@@ -27,15 +27,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtOutput" />
+
+    <Button
+        android:id="@+id/btnBerechnen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnBerechnenClicked"
+        android:text="Berechnen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOutput"
+        app:layout_constraintVertical_bias="0.753" />
 
     <EditText
         android:id="@+id/txtInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="number|numberDecimal"
+        android:text="123456"
         app:layout_constraintBottom_toTopOf="@+id/btnAbschicken"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -44,7 +56,7 @@
         app:layout_constraintVertical_bias="0.185" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Antwort vom Server"

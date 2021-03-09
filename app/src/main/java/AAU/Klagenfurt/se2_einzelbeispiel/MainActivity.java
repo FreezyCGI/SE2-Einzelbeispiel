@@ -5,34 +5,61 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.io.*;
 import java.net.*;
 
 public class MainActivity extends AppCompatActivity
 {
+    EditText txtInput;
+    TextView txtOutput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //final Button btnAbschicken = findViewById("btnAbschicken");
-        //btnAbschicken.setOnClickListener(onBtnAbschickenClicked);
-
+        txtInput = findViewById(R.id.txtInput);
+        txtOutput = findViewById(R.id.txtOutput);
     }
 
     public void onBtnAbschickenClicked(View view) throws InterruptedException
     {
-        EditText txtInput = findViewById(R.id.txtInput);
         String input = txtInput.getText().toString();
 
         TestThread t = new TestThread(input);
         t.start();
         t.join();
-        Toast.makeText(this, t.GetResult(), Toast.LENGTH_SHORT).show();
+
+        txtOutput.setText(t.GetResult());
+    }
+
+    public void onBtnBerechnenClicked(View view)
+    {
+        char[] textArray = txtInput.getText().toString().toCharArray();
+        Integer quersumme = 0;
+        for (int i = 0; i < textArray.length; i++)
+        {
+            if (i % 2 == 0)
+            {
+                quersumme += (int) textArray[i];
+            }
+            else
+            {
+                quersumme -= (int) textArray[i];
+            }
+        }
+        String stringGerade;
+        if (quersumme % 2 == 0)
+        {
+            stringGerade = "Ja";
+        }
+        else
+        {
+            stringGerade = "Nein";
+        }
+        txtOutput.setText("Quersumme: " + quersumme.toString() + "\n Gerade: " + stringGerade);
     }
 }
 
